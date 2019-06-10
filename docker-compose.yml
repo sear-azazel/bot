@@ -1,0 +1,55 @@
+version: '3.4'
+
+services:
+  nginx:
+    image: nginx:1.13
+    container_name: bot_nginx
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./docker/nginx/conf:/etc/nginx/conf.d
+      - ./docker/nginx/uwsgi_params:/etc/nginx/uwsgi_params
+    depends_on:
+      - web
+
+  db:
+    image: mysql:5.7
+    container_name: bot_db
+    environment:
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - TZ=Asia/Tokyo
+    ports:
+      - ${MYSQL_PORT}:3306
+    volumes:
+      - bot-db:/var/lib/mysql
+      - ./docker/mysql/sql:/docker-entrypoint-initdb.d
+
+  web:
+    build: ./docker/web
+    container_name: bot_web
+    command: uwsgi --socket :8001 --module wsgi
+    volumes:
+      - ./src:/code
+      - ./static:/static
+    expose:
+      - "8001"
+    depends_on:
+      - db
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: bot_phpmyadmin
+    environment:
+      - PMA_ARBITRARY=1
+      - PMA_HOSTS=db
+      - PMA_USER=${MYSQL_USER}
+      - PMA_PASSWORD=${MYSQL_ROOT_PASSWORD}
+    ports:
+      - 8080:80
+
+volumes:
+  bot-db:
+    driver: local
