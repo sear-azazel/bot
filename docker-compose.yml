@@ -9,6 +9,7 @@ services:
     volumes:
       - ./docker/nginx/conf:/etc/nginx/conf.d
       - ./docker/nginx/uwsgi_params:/etc/nginx/uwsgi_params
+      - ./src/static:/static
     depends_on:
       - web
 
@@ -30,10 +31,10 @@ services:
   web:
     build: ./docker/web
     container_name: bot_web
-    command: uwsgi --socket :8001 --module wsgi
+    command: uwsgi --socket :8001 --module bot.wsgi
     volumes:
       - ./src:/code
-      - ./static:/static
+      - ./src/static:/static
     expose:
       - "8001"
     depends_on:
