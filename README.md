@@ -21,12 +21,21 @@ bot server
     - `src\bot\settings.py`の`DATABASES`を環境に合わせて修正
 1. サーバ起動
     - Terminal上で下記コマンドを実行
-    ```
-    python src\manage.py runserver 0.0.0.0:8000
-    ```
+        ```
+        python src\manage.py runserver 0.0.0.0:8000
+        ```
 
 ### Dockerの場合
 1. コンテナ起動
     ```
     docker-compose up -d
+    ```
+
+## DBマイグレーション
+1. DB作成
+    `docker\mysql\sql\init.sql`を実行
+1. マイグレーションコマンドの実行
+    ```
+    python src\manage.py makemigrations
+    python src\manage.py migrate
     ```
