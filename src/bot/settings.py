@@ -133,3 +133,8 @@ STATICFILES_DIRS = [
 
 # ログイン後トップページにリダイレクト
 LOGIN_REDIRECT_URL = '/'
+
+try:
+    from .local_settings import *
+except ImportError:
+    pass
