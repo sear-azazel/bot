@@ -1,8 +1,22 @@
 # Botサーバ
-bot server
+Slack Bot API用サーバ
 
 
 ## 開発環境構築
+### 共通
+- ローカル環境設定
+    1. `src/bot/local_settings.py`を作成
+    1. `src/bot/settings.py`から上書きする設定を記載
+        - 例）DBの設定を上書き
+            ```
+            DATABASES = {
+                'default': {
+                    'ENGINE': 'django.db.backends.sqlite3',
+                    'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+                }
+            } 
+            ```
+
 ### Anacondaの場合
 1. Anaconda Navigatorの起動
 1. 仮想環境作成
