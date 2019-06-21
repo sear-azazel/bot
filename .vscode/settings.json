@@ -2,5 +2,6 @@
     "python.linting.pylintEnabled": false,
     "python.linting.enabled": true,
     "python.linting.pydocstyleEnabled": false,
-    "python.linting.pep8Enabled": true
+    "python.linting.pep8Enabled": true,
+    "python.pythonPath": "~\\.conda\\envs\\django\\python.exe"
 }
