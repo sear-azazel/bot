@@ -80,7 +80,7 @@ DATABASES = {
         'NAME': 'bot',
         'USER': 'bot',
         'PASSWORD': 'password',
-        'HOST': '192.168.80.93',
+        'HOST': 'db',
         'PORT': '3306',
         'OPTIONS': {
             'charset': 'utf8mb4',
