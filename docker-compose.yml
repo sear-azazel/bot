@@ -3,7 +3,7 @@ version: '3.4'
 services:
   nginx:
     image: nginx:1.13
-    container_name: bot_nginx
+    container_name: bot.nginx
     ports:
       - "8000:8000"
     volumes:
@@ -11,11 +11,11 @@ services:
       - ./docker/nginx/uwsgi_params:/etc/nginx/uwsgi_params
       - ./src/static:/static
     depends_on:
-      - web
+      - python
 
   db:
     image: mysql:5.7
-    container_name: bot_db
+    container_name: bot.db
     environment:
       - MYSQL_DATABASE=${MYSQL_DATABASE}
       - MYSQL_USER=${MYSQL_USER}
@@ -28,9 +28,9 @@ services:
       - bot-db:/var/lib/mysql
       - ./docker/mysql/sql:/docker-entrypoint-initdb.d
 
-  web:
-    build: ./docker/web
-    container_name: bot_web
+  python:
+    build: ./docker/python
+    container_name: bot.python
     command: uwsgi --socket :8001 --module bot.wsgi
     volumes:
       - ./src:/code
@@ -42,7 +42,7 @@ services:
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
-    container_name: bot_phpmyadmin
+    container_name: bot.phpmyadmin
     environment:
       - PMA_ARBITRARY=1
       - PMA_HOSTS=db

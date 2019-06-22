@@ -1,0 +1,4 @@
+Django==2.2.2
+uwsgi==2.0.17
+mysqlclient==1.4.2.post1
+slackbot==0.5.3
