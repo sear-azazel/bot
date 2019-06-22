@@ -40,6 +40,18 @@ services:
     depends_on:
       - db
 
+  # vuejs:
+  #   build: ./docker/vuejs
+  #   container_name: bot.vuejs
+  #   command: >
+  #     sh -c 'cd /app/bot/vuejs &&
+  #     npm install &&
+  #     npm run build-watch'
+  #   volumes:
+  #     - ./src:/app
+  #     #- ./src/bot/static/assets:/app/bot/vuejs/dist
+  #     # - node-modules:/app/bot/vuejs/node_modules
+
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     container_name: bot.phpmyadmin
@@ -54,3 +66,5 @@ services:
 volumes:
   bot-db:
     driver: local
+  # node-modules:
+  #   driver: local
