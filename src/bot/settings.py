@@ -32,6 +32,7 @@ ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
     'accounts.apps.AccountsConfig',
+    'employees.apps.EmployeesConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -133,6 +134,8 @@ STATICFILES_DIRS = [
 
 # ログイン後トップページにリダイレクト
 LOGIN_REDIRECT_URL = '/'
+LOGIN_URL = '/accounts/login/'
+LOGOUT_REDIRECT_URL = '/'
 
 try:
     from .local_settings import *
