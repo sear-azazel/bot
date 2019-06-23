@@ -31,7 +31,9 @@ services:
   python:
     build: ./docker/python
     container_name: bot.python
-    command: uwsgi --socket :8001 --module bot.wsgi
+    command: >
+      sh -c 'python run.py &
+      uwsgi --socket :8001 --module bot.wsgi'
     volumes:
       - ./src:/code
       - ./src/static:/static
