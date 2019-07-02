@@ -5,7 +5,7 @@ html, body {
 }
 
 div, p, ul, ol, li, dl, dt, dd, h1, h2, h3, h4, h5, h6 label, input, textarea, select, button {
-    margin: 0;
+    margin: 100;
     padding: 0;
     color: #555555;
     font-size: 1rem;

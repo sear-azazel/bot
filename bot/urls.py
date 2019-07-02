@@ -19,7 +19,7 @@ from django.conf.urls import include
 from employees import views
 
 urlpatterns = [
-    # path('employees/', include('employees.urls')),
+    path('employees/', include('employees.urls')),
     # path('', views.EmployeeListView.as_view(), name='list'),
     path('accounts/', include('accounts.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
